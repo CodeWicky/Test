@@ -8,6 +8,7 @@
 
 #import "BViewController.h"
 #import "CViewController.h"
+#import "DWAlertController.h"
 
 @interface BViewController ()
 
@@ -25,6 +26,10 @@
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    DWAlertController * alert = [DWAlertController new];
+    alert.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
+    [alert showInViewController:self];
+    return;
     CViewController * new =[CViewController new];
     [self.navigationController pushViewController:new animated:YES];
 }
