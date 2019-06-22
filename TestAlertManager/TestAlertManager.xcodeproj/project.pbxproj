@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B6EE54222BE10C00065CFA2 /* DWAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6EE54122BE10C00065CFA2 /* DWAlertController.m */; };
+		9B6EE54222BE10C00065CFA2 /* DDAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6EE54122BE10C00065CFA2 /* DDAlertController.m */; };
 		9BA7D3A822BCF2B100280240 /* AViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D3A722BCF2B100280240 /* AViewController.m */; };
 		9BA7D3AB22BCF2B700280240 /* BViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D3AA22BCF2B700280240 /* BViewController.m */; };
 		9BA7D3AE22BCF2CE00280240 /* CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D3AD22BCF2CE00280240 /* CViewController.m */; };
@@ -23,8 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9B6EE54022BE10C00065CFA2 /* DWAlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWAlertController.h; sourceTree = "<group>"; };
-		9B6EE54122BE10C00065CFA2 /* DWAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWAlertController.m; sourceTree = "<group>"; };
+		9B6EE54022BE10C00065CFA2 /* DDAlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDAlertController.h; sourceTree = "<group>"; };
+		9B6EE54122BE10C00065CFA2 /* DDAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDAlertController.m; sourceTree = "<group>"; };
 		9BA7D3A622BCF2B100280240 /* AViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AViewController.h; sourceTree = "<group>"; };
 		9BA7D3A722BCF2B100280240 /* AViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AViewController.m; sourceTree = "<group>"; };
 		9BA7D3A922BCF2B700280240 /* BViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BViewController.h; sourceTree = "<group>"; };
@@ -86,8 +86,8 @@
 				9BDE772C22BC73BE004423BD /* ViewController.h */,
 				9BDE772D22BC73BE004423BD /* ViewController.m */,
 				9BA7D3AF22BCF50D00280240 /* BaseViewController.h */,
-				9B6EE54022BE10C00065CFA2 /* DWAlertController.h */,
-				9B6EE54122BE10C00065CFA2 /* DWAlertController.m */,
+				9B6EE54022BE10C00065CFA2 /* DDAlertController.h */,
+				9B6EE54122BE10C00065CFA2 /* DDAlertController.m */,
 				9BA7D3B022BCF50D00280240 /* BaseViewController.m */,
 				9BA7D3A622BCF2B100280240 /* AViewController.h */,
 				9BA7D3A722BCF2B100280240 /* AViewController.m */,
@@ -181,7 +181,7 @@
 				9BA7D3A822BCF2B100280240 /* AViewController.m in Sources */,
 				9BDE772E22BC73BE004423BD /* ViewController.m in Sources */,
 				9BDE773922BC73BF004423BD /* main.m in Sources */,
-				9B6EE54222BE10C00065CFA2 /* DWAlertController.m in Sources */,
+				9B6EE54222BE10C00065CFA2 /* DDAlertController.m in Sources */,
 				9BDE774422BC73FF004423BD /* DWTransition.m in Sources */,
 				9BDE774122BC73D6004423BD /* NavViewController.m in Sources */,
 				9BA7D3AE22BCF2CE00280240 /* CViewController.m in Sources */,

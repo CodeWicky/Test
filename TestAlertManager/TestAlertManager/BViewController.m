@@ -8,7 +8,7 @@
 
 #import "BViewController.h"
 #import "CViewController.h"
-#import "DWAlertController.h"
+#import "DDAlertController.h"
 
 @interface BViewController ()
 
@@ -26,7 +26,7 @@
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    DWAlertController * alert = [DWAlertController new];
+    DDAlertController * alert = [DDAlertController new];
     alert.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
     [alert showInViewController:self];
     return;

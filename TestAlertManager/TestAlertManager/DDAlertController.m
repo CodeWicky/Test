@@ -6,9 +6,13 @@
 //  Copyright © 2019 Wicky. All rights reserved.
 //
 
-#import "DWAlertController.h"
+#import "DDAlertController.h"
 
-@interface DWAlertController ()
+@interface DDAlertController ()
+
+@property (nonatomic ,strong) UIView * bgContainer;
+
+@property (nonatomic ,strong) UIImageView * snapNavigationBar;
 
 @property (nonatomic ,assign) BOOL sourceHiddenNavigation;
 
@@ -16,38 +20,56 @@
 
 @end
 
-@implementation DWAlertController
+@implementation DDAlertController
 @synthesize pushAnimationType = _pushAnimationType;
 @synthesize popAnimationType = _popAnimationType;
 @synthesize animationFlag = _animationFlag;
 
 #pragma mark --- interface method ---
 -(void)show {
-    if (self.currentVC.navigationController) {
-        [self showInViewController:self.currentVC];
-    } else if ([self.currentVC isKindOfClass:[UINavigationController class]]) {
-        [self showInViewController:((UINavigationController *)self.currentVC).topViewController];
-    }
+    [self showInViewController:self.currentVC];
 }
 
 -(void)showInViewController:(UIViewController *)vc {
     if (vc.navigationController) {
+        self.currentVC = vc;
         [vc.navigationController pushViewController:self animated:YES];
     }
 }
 
 -(void)configWithCurrentViewController:(UIViewController *)currentVC {
-    self.currentVC = currentVC;
+    if (currentVC.navigationController) {
+        self.currentVC = currentVC;
+    } else if ([currentVC isKindOfClass:[UINavigationController class]]) {
+        self.currentVC = ((UINavigationController *)currentVC).topViewController;
+    }
 }
 
 -(void)dismiss {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark --- tool method ---
+-(void)setupUI {
+    [self.view addSubview:self.bgContainer];
+}
+
+-(UIImage *)snapWithView:(UIView *)view {
+    CGFloat scale = [UIScreen mainScreen].scale;
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    [view.layer renderInContext:context];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 #pragma mark --- life cycle ---
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.sourceHiddenNavigation = self.navigationController.navigationBarHidden;
+    [self setupUI];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -57,10 +79,17 @@
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.navigationController setNavigationBarHidden:self.sourceHiddenNavigation];
+    [self.currentVC.navigationController setNavigationBarHidden:self.sourceHiddenNavigation];
 }
 
 #pragma mark --- override ---
+-(void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    if (!CGRectEqualToRect(self.bgContainer.frame, self.view.bounds)) {
+        self.bgContainer.frame = self.view.bounds;
+    }
+}
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (self.cancelableOnClickBackground && [self.navigationController.topViewController isEqual:self]) {
         CGPoint pointInContent = [[touches anyObject] locationInView:self.contentView];
@@ -78,9 +107,27 @@
     return self;
 }
 
+-(void)dealloc {
+    NSLog(@"dealloc");
+}
+
 #pragma mark --- setter/getter ---
+-(UIView *)bgContainer {
+    if (!_bgContainer) {
+        _bgContainer = [[UIView alloc] init];
+    }
+    return _bgContainer;
+}
+
+-(UIImageView *)snapNavigationBar {
+    if (!_snapNavigationBar) {
+        _snapNavigationBar = [[UIImageView alloc] init];
+    }
+    return _snapNavigationBar;
+}
+
 -(void)setBackgroundColor:(UIColor *)backgroundColor {
-    self.view.backgroundColor = backgroundColor;
+    self.bgContainer.backgroundColor = backgroundColor;
 }
 
 -(DWTransitionType)pushAnimationType {

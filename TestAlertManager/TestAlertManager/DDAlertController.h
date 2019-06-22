@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DWAlertController : UIViewController<DWTransitionProtocol>
+@interface DDAlertController : UIViewController<DWTransitionProtocol>
 
 @property (nonatomic ,strong) UIColor * backgroundColor;
 
