@@ -51,6 +51,18 @@
 
 #pragma mark --- tool method ---
 -(void)setupUI {
+    if (!self.sourceHiddenNavigation) {
+        UINavigationBar * bar = self.currentVC.navigationController.navigationBar;
+        CGRect frame = bar.frame;
+        ///额外加0.5，因为有分割线
+        frame.size.height = CGRectGetMaxY(frame) + 0.5;
+        frame.origin.y = 0;
+        UIImage * navImage = [self snapWithView:self.currentVC.navigationController.view];
+        navImage = [self cropImage:navImage inRect:frame];
+        self.snapNavigationBar.image = navImage;
+        self.snapNavigationBar.frame = frame;
+        [self.view addSubview:self.snapNavigationBar];
+    }
     [self.view addSubview:self.bgContainer];
 }
 
@@ -63,6 +75,31 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+-(UIImage*)cropImage:(UIImage*)image inRect:(CGRect)rect {
+    if (rect.origin.x > image.size.width || rect.origin.y > image.size.height) {
+        return nil;
+    } else if (rect.size.width < 0 || rect.size.height < 0) {
+        return nil;
+    }
+    if (rect.origin.x < 0) {
+        rect.origin.x = 0;
+    }
+    if (rect.origin.y < 0) {
+        rect.origin.y = 0;
+    }
+    if (CGRectGetMaxX(rect) > image.size.width) {
+        rect.size.width = image.size.width - rect.origin.x;
+    }
+    if (CGRectGetMaxY(rect) > image.size.height) {
+        rect.size.height = image.size.height - rect.origin.y;
+    }
+    rect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeScale(image.scale, image.scale));
+    CGImageRef imagePartRef = CGImageCreateWithImageInRect(image.CGImage,rect);
+    UIImage * cropImage = [UIImage imageWithCGImage:imagePartRef];
+    CGImageRelease(imagePartRef);
+    return cropImage;
 }
 
 #pragma mark --- life cycle ---
@@ -115,6 +152,7 @@
 -(UIView *)bgContainer {
     if (!_bgContainer) {
         _bgContainer = [[UIView alloc] init];
+        _bgContainer.alpha = 0;
     }
     return _bgContainer;
 }
@@ -131,11 +169,11 @@
 }
 
 -(DWTransitionType)pushAnimationType {
-    return DWTransitionTransparentPushType | DWTransitionAnimationFadeInType;
+    return DWTransitionTransparentPushType | DWTransitionAnimationNoneType;
 }
 
 -(DWTransitionType)popAnimationType {
-    return DWTransitionTransparentPopType | DWTransitionAnimationFadeInType;
+    return DWTransitionTransparentPopType | DWTransitionAnimationNoneType;
 }
 
 @end
