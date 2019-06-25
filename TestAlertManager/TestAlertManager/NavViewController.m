@@ -39,7 +39,7 @@
                 transitionType = DWTransitionPresentType;
             }
             
-            return [DWTransition transitionWithType:transitionType | animationType duration:1 customTransition:nil];
+            return [DWTransition transitionWithType:transitionType | animationType duration:0.25 customTransition:nil];
         } else {
             return nil;
         }

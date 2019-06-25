@@ -31,8 +31,14 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     DDAlertController * alert = [DDAlertController new];
-//    alert.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
+    alert.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
     [alert showInViewController:self];
+    
+    UIView * content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+    content.backgroundColor = [UIColor whiteColor];
+    alert.contentView = content;
+    
+    
     return;
     CViewController * new =[CViewController new];
     [self.navigationController pushViewController:new animated:YES];

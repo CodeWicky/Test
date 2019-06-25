@@ -46,7 +46,10 @@
 }
 
 -(void)dismiss {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self hideAnimationWithCompletion:^{
+        [self.navigationController popViewControllerAnimated:YES];
+        [self.currentVC.navigationController setNavigationBarHidden:self.sourceHiddenNavigation];
+    }];
 }
 
 #pragma mark --- tool method ---
@@ -102,6 +105,26 @@
     return cropImage;
 }
 
+-(void)showAnimationWithCompletion:(dispatch_block_t)completion {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.bgContainer.alpha = 1;
+    } completion:^(BOOL finished) {
+        if (completion) {
+            completion();
+        }
+    }];
+}
+
+-(void)hideAnimationWithCompletion:(dispatch_block_t)completion {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.bgContainer.alpha = 0;
+    } completion:^(BOOL finished) {
+        if (completion) {
+            completion();
+        }
+    }];
+}
+
 #pragma mark --- life cycle ---
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -112,6 +135,11 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self showAnimationWithCompletion:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -125,12 +153,18 @@
     if (!CGRectEqualToRect(self.bgContainer.frame, self.view.bounds)) {
         self.bgContainer.frame = self.view.bounds;
     }
+    if (self.contentView && !CGPointEqualToPoint(self.contentView.center, self.view.center)) {
+        self.contentView.center = self.view.center;
+    }
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (self.cancelableOnClickBackground && [self.navigationController.topViewController isEqual:self]) {
         CGPoint pointInContent = [[touches anyObject] locationInView:self.contentView];
-        if (CGRectContainsPoint(self.contentView.frame, pointInContent)) {
+        if (CGRectContainsPoint(self.contentView.bounds, pointInContent)) {
+            UIViewController * vc = [UIViewController new];
+            vc.view.backgroundColor = [UIColor greenColor];
+            [self.navigationController pushViewController:vc animated:YES];
             return;
         }
         [self dismiss];
@@ -157,6 +191,13 @@
     return _bgContainer;
 }
 
+-(void)setContentView:(UIView *)contentView {
+    _contentView = contentView;
+    if (contentView) {
+        [self.bgContainer addSubview:contentView];
+    }
+}
+
 -(UIImageView *)snapNavigationBar {
     if (!_snapNavigationBar) {
         _snapNavigationBar = [[UIImageView alloc] init];
@@ -166,6 +207,10 @@
 
 -(void)setBackgroundColor:(UIColor *)backgroundColor {
     self.bgContainer.backgroundColor = backgroundColor;
+}
+
+-(UIColor *)backgroundColor {
+    return self.bgContainer.backgroundColor;
 }
 
 -(DWTransitionType)pushAnimationType {
