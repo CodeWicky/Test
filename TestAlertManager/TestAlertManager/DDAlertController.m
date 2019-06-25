@@ -52,6 +52,19 @@
 #pragma mark --- tool method ---
 -(void)setupUI {
     [self.view addSubview:self.bgContainer];
+    if (!self.sourceHiddenNavigation) {
+        UINavigationBar * bar = self.navigationController.navigationBar;
+        CGRect frame = bar.frame;
+        frame.size.height = CGRectGetMaxY(frame);
+        frame.origin.y = 0;
+        ///分割线高度
+        frame.size.height += 0.5;
+        UIImage * image = [self snapWithView:self.navigationController.view];
+        image = [self cropWithImage:image inRect:frame];
+        self.snapNavigationBar.image = image;
+        [self.view addSubview:self.snapNavigationBar];
+        self.snapNavigationBar.frame = frame;
+    }
 }
 
 -(UIImage *)snapWithView:(UIView *)view {
@@ -63,6 +76,20 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+-(UIImage *)cropWithImage:(UIImage *)image inRect:(CGRect)rect{
+    
+    //把像 素rect 转化为 点rect（如无转化则按原图像素取部分图片）
+    CGFloat scale = image.scale;
+    
+    rect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeScale(scale, scale));
+    
+    //截取部分图片并生成新图片
+    CGImageRef sourceImageRef = [image CGImage];
+    CGImageRef newImageRef = CGImageCreateWithImageInRect(sourceImageRef, rect);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
+    return newImage;
 }
 
 #pragma mark --- life cycle ---
@@ -130,12 +157,16 @@
     self.bgContainer.backgroundColor = backgroundColor;
 }
 
+-(UIColor *)backgroundColor {
+    return self.bgContainer.backgroundColor;
+}
+
 -(DWTransitionType)pushAnimationType {
-    return DWTransitionTransparentPushType | DWTransitionAnimationFadeInType;
+    return DWTransitionTransparentPushType | DWTransitionAnimationNoneType;
 }
 
 -(DWTransitionType)popAnimationType {
-    return DWTransitionTransparentPopType | DWTransitionAnimationFadeInType;
+    return DWTransitionTransparentPopType | DWTransitionAnimationNoneType;
 }
 
 @end
