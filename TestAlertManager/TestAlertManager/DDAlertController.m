@@ -48,23 +48,25 @@
 }
 
 -(void)dismiss {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self hideAnimationWithCompletion:^{
+        [self.navigationController popViewControllerAnimated:YES];
+        [self.currentVC.navigationController setNavigationBarHidden:self.sourceHiddenNavigation];
+    }];
 }
 
 #pragma mark --- tool method ---
 -(void)setupUI {
     if (!self.sourceHiddenNavigation) {
-        UINavigationBar * bar = self.navigationController.navigationBar;
+        UINavigationBar * bar = self.currentVC.navigationController.navigationBar;
         CGRect frame = bar.frame;
-        frame.size.height = CGRectGetMaxY(frame);
+        ///额外加0.5，因为有分割线
+        frame.size.height = CGRectGetMaxY(frame) + 0.5;
         frame.origin.y = 0;
-        ///分割线高度
-        frame.size.height += 0.5;
-        UIImage * image = [self snapWithView:self.navigationController.view];
-        image = [self cropWithImage:image inRect:frame];
-        self.snapNavigationBar.image = image;
-        [self.view addSubview:self.snapNavigationBar];
+        UIImage * navImage = [self snapWithView:self.currentVC.navigationController.view];
+        navImage = [self cropImage:navImage inRect:frame];
+        self.snapNavigationBar.image = navImage;
         self.snapNavigationBar.frame = frame;
+        [self.view addSubview:self.snapNavigationBar];
     }
     [self.view addSubview:self.bgContainer];
 }
@@ -80,18 +82,49 @@
     return image;
 }
 
--(UIImage *)cropWithImage:(UIImage *)image inRect:(CGRect)rect{
-    
-    //把像 素rect 转化为 点rect（如无转化则按原图像素取部分图片）
-    CGFloat scale = image.scale;
-    
-    rect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeScale(scale, scale));
-    
-    //截取部分图片并生成新图片
-    CGImageRef sourceImageRef = [image CGImage];
-    CGImageRef newImageRef = CGImageCreateWithImageInRect(sourceImageRef, rect);
-    UIImage *newImage = [UIImage imageWithCGImage:newImageRef scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
-    return newImage;
+-(UIImage*)cropImage:(UIImage*)image inRect:(CGRect)rect {
+    if (rect.origin.x > image.size.width || rect.origin.y > image.size.height) {
+        return nil;
+    } else if (rect.size.width < 0 || rect.size.height < 0) {
+        return nil;
+    }
+    if (rect.origin.x < 0) {
+        rect.origin.x = 0;
+    }
+    if (rect.origin.y < 0) {
+        rect.origin.y = 0;
+    }
+    if (CGRectGetMaxX(rect) > image.size.width) {
+        rect.size.width = image.size.width - rect.origin.x;
+    }
+    if (CGRectGetMaxY(rect) > image.size.height) {
+        rect.size.height = image.size.height - rect.origin.y;
+    }
+    rect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeScale(image.scale, image.scale));
+    CGImageRef imagePartRef = CGImageCreateWithImageInRect(image.CGImage,rect);
+    UIImage * cropImage = [UIImage imageWithCGImage:imagePartRef];
+    CGImageRelease(imagePartRef);
+    return cropImage;
+}
+
+-(void)showAnimationWithCompletion:(dispatch_block_t)completion {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.bgContainer.alpha = 1;
+    } completion:^(BOOL finished) {
+        if (completion) {
+            completion();
+        }
+    }];
+}
+
+-(void)hideAnimationWithCompletion:(dispatch_block_t)completion {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.bgContainer.alpha = 0;
+    } completion:^(BOOL finished) {
+        if (completion) {
+            completion();
+        }
+    }];
 }
 
 #pragma mark --- life cycle ---
@@ -122,6 +155,11 @@
     UIImage *theImage=UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return theImage;
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self showAnimationWithCompletion:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -174,6 +212,13 @@
         _bgContainer.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
     }
     return _bgContainer;
+}
+
+-(void)setContentView:(UIView *)contentView {
+    _contentView = contentView;
+    if (contentView) {
+        [self.bgContainer addSubview:contentView];
+    }
 }
 
 -(UIImageView *)snapNavigationBar {

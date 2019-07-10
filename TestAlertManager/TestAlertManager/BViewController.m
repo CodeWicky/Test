@@ -19,6 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+    
+    self.view.backgroundColor = [UIColor orangeColor];
+
+    
     UIView * yellow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     yellow.backgroundColor = [UIColor yellowColor];
     yellow.center = CGPointMake(self.view.center.x, self.view.center.y + 100);

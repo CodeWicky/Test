@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+    self.view.backgroundColor = [UIColor redColor];
     UIView * green = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     green.backgroundColor = [UIColor greenColor];
     green.center = CGPointMake(self.view.center.x, self.view.center.y - 100);

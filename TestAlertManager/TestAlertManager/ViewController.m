@@ -17,10 +17,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor purpleColor];
     UIView * red = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     red.backgroundColor = [UIColor redColor];
     [self.view addSubview:red];
-    red.center = self.view.center;
+
+//    red.center = self.view.center;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
