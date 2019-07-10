@@ -23,6 +23,14 @@
     red.center = self.view.center;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+//    [self.navigationController.navigationBar setBackgroundImage: forBarMetrics:(UIBarMetricsDefault)];
+}
+
+
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     AViewController * new = [AViewController new];
     new.pushAnimationType = DWTransitionTransparentPushType;

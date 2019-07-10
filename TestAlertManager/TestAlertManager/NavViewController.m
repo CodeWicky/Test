@@ -38,7 +38,8 @@
             } else if (transitionType == DWTransitionDismissType) {
                 transitionType = DWTransitionPresentType;
             }
-            
+            UINavigationController * temp = self;
+//            UIImage * image = [self snapWithViewController:temp];
             return [DWTransition transitionWithType:transitionType | animationType duration:0.25 customTransition:nil];
         } else {
             return nil;
@@ -126,6 +127,24 @@
 -(NSArray<UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated {
     self.viewControllersBeforePop = [self.viewControllers mutableCopy];
     return [super popToRootViewControllerAnimated:animated];
+}
+
+
+
+
+-(UIImage *)snapWithViewController:(UIViewController *)vc {
+    return [self snapWithView:vc.view];
+}
+
+-(UIImage *)snapWithView:(UIView *)view {
+    CGFloat scale = [UIScreen mainScreen].scale;
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    [view.layer renderInContext:context];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 @end

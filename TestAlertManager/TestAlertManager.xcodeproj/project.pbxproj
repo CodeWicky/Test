@@ -12,6 +12,12 @@
 		9BA7D3AB22BCF2B700280240 /* BViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D3AA22BCF2B700280240 /* BViewController.m */; };
 		9BA7D3AE22BCF2CE00280240 /* CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D3AD22BCF2CE00280240 /* CViewController.m */; };
 		9BA7D3B122BCF50D00280240 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D3B022BCF50D00280240 /* BaseViewController.m */; };
+		9BD45BEA22D3438B00F4DC36 /* UIScrollView+DWNavigationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD45BDE22D3438A00F4DC36 /* UIScrollView+DWNavigationTransition.m */; };
+		9BD45BEB22D3438B00F4DC36 /* UIViewController+DWNavigationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD45BE022D3438A00F4DC36 /* UIViewController+DWNavigationTransition.m */; };
+		9BD45BEC22D3438B00F4DC36 /* DWTransitionFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD45BE222D3438A00F4DC36 /* DWTransitionFunction.m */; };
+		9BD45BED22D3438B00F4DC36 /* UIView+DWNavigationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD45BE522D3438A00F4DC36 /* UIView+DWNavigationTransition.m */; };
+		9BD45BEE22D3438B00F4DC36 /* UINavigationController+DWNavigationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD45BE722D3438A00F4DC36 /* UINavigationController+DWNavigationTransition.m */; };
+		9BD45BEF22D3438B00F4DC36 /* UINavigationBar+DWNavigationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD45BE922D3438A00F4DC36 /* UINavigationBar+DWNavigationTransition.m */; };
 		9BDE772B22BC73BE004423BD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE772A22BC73BE004423BD /* AppDelegate.m */; };
 		9BDE772E22BC73BE004423BD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE772D22BC73BE004423BD /* ViewController.m */; };
 		9BDE773122BC73BE004423BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BDE772F22BC73BE004423BD /* Main.storyboard */; };
@@ -33,6 +39,18 @@
 		9BA7D3AD22BCF2CE00280240 /* CViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CViewController.m; sourceTree = "<group>"; };
 		9BA7D3AF22BCF50D00280240 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		9BA7D3B022BCF50D00280240 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		9BD45BDE22D3438A00F4DC36 /* UIScrollView+DWNavigationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+DWNavigationTransition.m"; sourceTree = "<group>"; };
+		9BD45BDF22D3438A00F4DC36 /* UINavigationController+DWNavigationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+DWNavigationTransition.h"; sourceTree = "<group>"; };
+		9BD45BE022D3438A00F4DC36 /* UIViewController+DWNavigationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DWNavigationTransition.m"; sourceTree = "<group>"; };
+		9BD45BE122D3438A00F4DC36 /* UIView+DWNavigationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DWNavigationTransition.h"; sourceTree = "<group>"; };
+		9BD45BE222D3438A00F4DC36 /* DWTransitionFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTransitionFunction.m; sourceTree = "<group>"; };
+		9BD45BE322D3438A00F4DC36 /* UINavigationBar+DWNavigationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+DWNavigationTransition.h"; sourceTree = "<group>"; };
+		9BD45BE422D3438A00F4DC36 /* UIScrollView+DWNavigationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+DWNavigationTransition.h"; sourceTree = "<group>"; };
+		9BD45BE522D3438A00F4DC36 /* UIView+DWNavigationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DWNavigationTransition.m"; sourceTree = "<group>"; };
+		9BD45BE622D3438A00F4DC36 /* UIViewController+DWNavigationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DWNavigationTransition.h"; sourceTree = "<group>"; };
+		9BD45BE722D3438A00F4DC36 /* UINavigationController+DWNavigationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+DWNavigationTransition.m"; sourceTree = "<group>"; };
+		9BD45BE822D3438A00F4DC36 /* DWTransitionFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTransitionFunction.h; sourceTree = "<group>"; };
+		9BD45BE922D3438A00F4DC36 /* UINavigationBar+DWNavigationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+DWNavigationTransition.m"; sourceTree = "<group>"; };
 		9BDE772622BC73BE004423BD /* TestAlertManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestAlertManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BDE772922BC73BE004423BD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9BDE772A22BC73BE004423BD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -60,6 +78,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9BD45BDD22D3438A00F4DC36 /* DWNavigationTransition */ = {
+			isa = PBXGroup;
+			children = (
+				9BD45BDE22D3438A00F4DC36 /* UIScrollView+DWNavigationTransition.m */,
+				9BD45BDF22D3438A00F4DC36 /* UINavigationController+DWNavigationTransition.h */,
+				9BD45BE022D3438A00F4DC36 /* UIViewController+DWNavigationTransition.m */,
+				9BD45BE122D3438A00F4DC36 /* UIView+DWNavigationTransition.h */,
+				9BD45BE222D3438A00F4DC36 /* DWTransitionFunction.m */,
+				9BD45BE322D3438A00F4DC36 /* UINavigationBar+DWNavigationTransition.h */,
+				9BD45BE422D3438A00F4DC36 /* UIScrollView+DWNavigationTransition.h */,
+				9BD45BE522D3438A00F4DC36 /* UIView+DWNavigationTransition.m */,
+				9BD45BE622D3438A00F4DC36 /* UIViewController+DWNavigationTransition.h */,
+				9BD45BE722D3438A00F4DC36 /* UINavigationController+DWNavigationTransition.m */,
+				9BD45BE822D3438A00F4DC36 /* DWTransitionFunction.h */,
+				9BD45BE922D3438A00F4DC36 /* UINavigationBar+DWNavigationTransition.m */,
+			);
+			path = DWNavigationTransition;
+			sourceTree = "<group>";
+		};
 		9BDE771D22BC73BE004423BD = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +116,7 @@
 		9BDE772822BC73BE004423BD /* TestAlertManager */ = {
 			isa = PBXGroup;
 			children = (
+				9BD45BDD22D3438A00F4DC36 /* DWNavigationTransition */,
 				9BDE774222BC73FF004423BD /* DWTransition.h */,
 				9BDE774322BC73FF004423BD /* DWTransition.m */,
 				9BDE772922BC73BE004423BD /* AppDelegate.h */,
@@ -182,9 +220,15 @@
 				9BDE772E22BC73BE004423BD /* ViewController.m in Sources */,
 				9BDE773922BC73BF004423BD /* main.m in Sources */,
 				9B6EE54222BE10C00065CFA2 /* DDAlertController.m in Sources */,
+				9BD45BED22D3438B00F4DC36 /* UIView+DWNavigationTransition.m in Sources */,
+				9BD45BEF22D3438B00F4DC36 /* UINavigationBar+DWNavigationTransition.m in Sources */,
+				9BD45BEB22D3438B00F4DC36 /* UIViewController+DWNavigationTransition.m in Sources */,
+				9BD45BEC22D3438B00F4DC36 /* DWTransitionFunction.m in Sources */,
 				9BDE774422BC73FF004423BD /* DWTransition.m in Sources */,
 				9BDE774122BC73D6004423BD /* NavViewController.m in Sources */,
 				9BA7D3AE22BCF2CE00280240 /* CViewController.m in Sources */,
+				9BD45BEE22D3438B00F4DC36 /* UINavigationController+DWNavigationTransition.m in Sources */,
+				9BD45BEA22D3438B00F4DC36 /* UIScrollView+DWNavigationTransition.m in Sources */,
 				9BDE772B22BC73BE004423BD /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

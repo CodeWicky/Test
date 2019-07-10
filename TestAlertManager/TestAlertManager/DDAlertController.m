@@ -8,6 +8,8 @@
 
 #import "DDAlertController.h"
 
+#import "CViewController.h"
+
 @interface DDAlertController ()
 
 @property (nonatomic ,strong) UIView * bgContainer;
@@ -51,7 +53,6 @@
 
 #pragma mark --- tool method ---
 -(void)setupUI {
-    [self.view addSubview:self.bgContainer];
     if (!self.sourceHiddenNavigation) {
         UINavigationBar * bar = self.navigationController.navigationBar;
         CGRect frame = bar.frame;
@@ -65,6 +66,7 @@
         [self.view addSubview:self.snapNavigationBar];
         self.snapNavigationBar.frame = frame;
     }
+    [self.view addSubview:self.bgContainer];
 }
 
 -(UIImage *)snapWithView:(UIView *)view {
@@ -95,18 +97,36 @@
 #pragma mark --- life cycle ---
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.sourceHiddenNavigation = self.navigationController.navigationBarHidden;
+//    self.sourceHiddenNavigation = self.navigationController.navigationBarHidden;
     [self setupUI];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:[UIColor colorWithRed:0 green:1 blue:0 alpha:0.]] forBarMetrics:(UIBarMetricsDefault)];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:(UIBarMetricsDefault)];
+//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+////    [self.navigationItem setHidesBackButton:YES animated:animated];
+//    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
+-(UIImage*)createImageWithColor:(UIColor*)color
+{
+    CGRect rect=CGRectMake(0.0f,0.0f,1.0f,1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context=UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context,[color CGColor]);
+    CGContextFillRect(context,rect);
+    UIImage *theImage=UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.currentVC.navigationController setNavigationBarHidden:self.sourceHiddenNavigation];
+//    [self.currentVC.navigationController setNavigationBarHidden:self.sourceHiddenNavigation animated:animated];
 }
 
 #pragma mark --- override ---
@@ -115,12 +135,21 @@
     if (!CGRectEqualToRect(self.bgContainer.frame, self.view.bounds)) {
         self.bgContainer.frame = self.view.bounds;
     }
+    
+    if (self.contentView) {
+        [self.view addSubview:self.contentView];
+        if (!CGPointEqualToPoint(self.contentView.center, self.view.center)) {
+            self.contentView.center = self.view.center;
+        }
+    }
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (self.cancelableOnClickBackground && [self.navigationController.topViewController isEqual:self]) {
         CGPoint pointInContent = [[touches anyObject] locationInView:self.contentView];
-        if (CGRectContainsPoint(self.contentView.frame, pointInContent)) {
+        if (CGRectContainsPoint(self.contentView.bounds, pointInContent)) {
+            CViewController * new = [CViewController new];
+            [self.navigationController pushViewController:new animated:YES];
             return;
         }
         [self dismiss];
@@ -142,6 +171,7 @@
 -(UIView *)bgContainer {
     if (!_bgContainer) {
         _bgContainer = [[UIView alloc] init];
+        _bgContainer.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
     }
     return _bgContainer;
 }
