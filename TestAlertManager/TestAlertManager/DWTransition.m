@@ -7,6 +7,7 @@
 //
 
 #import "DWTransition.h"
+#import <objc/runtime.h>
 
 @interface DWTransition ()
 
@@ -42,6 +43,7 @@ static NSString * const kDWTransitionTransparentTempView = @"DWTransitionTranspa
     UIView * toView = [transitionContext viewForKey:UITransitionContextToViewKey];
     UIImageView * fromView = [[UIImageView alloc] init];
     fromView.image = [self snapWithViewController:fromVC.navigationController.view.window.rootViewController];
+    UIImageWriteToSavedPhotosAlbum(fromView.image, nil, nil, nil);
     
     UIView *containerView = [transitionContext containerView];
     ///此处移除所有原有子视图，因为Push本身的行为就是Push完成之后context层只有一个toView
@@ -912,6 +914,32 @@ static NSString * const kDWTransitionTransparentTempView = @"DWTransitionTranspa
         }
             break;
     }
+}
+
+@end
+
+@implementation UINavigationController (DWTransition)
+
+-(UIView *)dw_navigationTransitionView {
+    UIView * view = objc_getAssociatedObject(self, _cmd);
+    if (!view) {
+        view = [self valueForKey:@"navigationTransitionView"];
+        objc_setAssociatedObject(self, _cmd, view, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return view;
+}
+
+@end
+
+@implementation UITabBarController (DWTransition)
+
+-(UIView *)dw_tabTransitionView {
+    UIView * view = objc_getAssociatedObject(self, _cmd);
+    if (!view) {
+        view = [self valueForKey:@"_accessoryView"];
+        objc_setAssociatedObject(self, _cmd, view, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return view;
 }
 
 @end

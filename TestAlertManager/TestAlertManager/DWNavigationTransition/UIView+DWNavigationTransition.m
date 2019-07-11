@@ -15,7 +15,7 @@
 +(void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        DWSwizzleMethod(NSClassFromString(@"_UIBarBackground"), @selector(setHidden:), [self class], @selector(dw_setHidden:));
+//        DWSwizzleMethod(NSClassFromString(@"_UIBarBackground"), @selector(setHidden:), [self class], @selector(dw_setHidden:));
     });
 }
 

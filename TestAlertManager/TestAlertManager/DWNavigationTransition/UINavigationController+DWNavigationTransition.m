@@ -17,11 +17,11 @@
 +(void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        DWQuickSwizzleMethod(pushViewController:animated:, dw_pushViewController:animated:);
-        DWQuickSwizzleMethod(popViewControllerAnimated:, dw_popViewControllerAnimated:);
-        DWQuickSwizzleMethod(popToViewController:animated:, dw_popToViewController:animated:);
-        DWQuickSwizzleMethod(popToRootViewControllerAnimated:, dw_popToRootViewControllerAnimated:);
-        DWQuickSwizzleMethod(setViewControllers:animated:, dw_setViewControllers:animated:);
+//        DWQuickSwizzleMethod(pushViewController:animated:, dw_pushViewController:animated:);
+//        DWQuickSwizzleMethod(popViewControllerAnimated:, dw_popViewControllerAnimated:);
+//        DWQuickSwizzleMethod(popToViewController:animated:, dw_popToViewController:animated:);
+//        DWQuickSwizzleMethod(popToRootViewControllerAnimated:, dw_popToRootViewControllerAnimated:);
+//        DWQuickSwizzleMethod(setViewControllers:animated:, dw_setViewControllers:animated:);
     });
 }
 
@@ -38,8 +38,8 @@
         return;
     }
     
-    BOOL debug = NO;
-    if (!debug) {
+//    BOOL debug = NO;
+//    if (!debug) {
         [fromVC dw_addTransitionBarIfNeeded];
         if (fromVC.dw_transitionBar.superview) {
             fromVC.navigationController.dw_backgroundViewHidden = YES;
@@ -48,11 +48,11 @@
         }
         
         [self dw_pushViewController:viewController animated:animated];
-    } else {
-        fromVC.navigationController.dw_backgroundViewHidden = YES;
-        viewController.dw_transitioningViewController = fromVC;
-        viewController.dw_isPushTransition = YES;
-    }
+//    } else {
+//        fromVC.navigationController.dw_backgroundViewHidden = YES;
+//        viewController.dw_transitioningViewController = fromVC;
+//        viewController.dw_isPushTransition = YES;
+//    }
 }
 
 -(UIViewController *)dw_popViewControllerAnimated:(BOOL)animated {

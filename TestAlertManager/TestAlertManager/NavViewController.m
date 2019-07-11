@@ -38,8 +38,6 @@
             } else if (transitionType == DWTransitionDismissType) {
                 transitionType = DWTransitionPresentType;
             }
-            UINavigationController * temp = self;
-//            UIImage * image = [self snapWithViewController:temp];
             return [DWTransition transitionWithType:transitionType | animationType duration:0.25 customTransition:nil];
         } else {
             return nil;

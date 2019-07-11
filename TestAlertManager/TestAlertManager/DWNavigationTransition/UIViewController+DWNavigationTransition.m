@@ -17,9 +17,9 @@
 +(void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        DWQuickSwizzleMethod(viewWillAppear:, dw_viewWillAppear:);
-        DWQuickSwizzleMethod(viewWillLayoutSubviews, dw_viewWillLayoutSubviews);
-        DWQuickSwizzleMethod(viewDidAppear:, dw_viewDidAppear:);
+//        DWQuickSwizzleMethod(viewWillAppear:, dw_viewWillAppear:);
+//        DWQuickSwizzleMethod(viewWillLayoutSubviews, dw_viewWillLayoutSubviews);
+//        DWQuickSwizzleMethod(viewDidAppear:, dw_viewDidAppear:);
     });
 }
 

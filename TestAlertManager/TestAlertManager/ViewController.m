@@ -9,6 +9,10 @@
 #import "ViewController.h"
 #import "AViewController.h"
 
+#import "DWTransition.h"
+
+#import <objc/runtime.h>
+
 @interface ViewController ()
 
 @end
@@ -21,8 +25,40 @@
     UIView * red = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     red.backgroundColor = [UIColor redColor];
     [self.view addSubview:red];
+    
+    
+    NSLog(@"%@",[self getAllProperties:[UITabBarController class]]);
+    NSLog(@"%@",self.tabBarController.dw_tabTransitionView);
 
 //    red.center = self.view.center;
+}
+
+- (NSArray *)getAllProperties:(Class)clazz
+
+
+
+{
+    
+    u_int count;
+    
+    objc_property_t *properties  =class_copyPropertyList(clazz, &count);
+    
+    NSMutableArray *propertiesArray = [NSMutableArray arrayWithCapacity:count];
+    
+    for (int i = 0; i<count; i++)
+        
+    {
+        
+        const char* propertyName =property_getName(properties[i]);
+        
+        [propertiesArray addObject: [NSString stringWithUTF8String: propertyName]];
+        
+    }
+    
+    free(properties);
+    
+    return propertiesArray;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
