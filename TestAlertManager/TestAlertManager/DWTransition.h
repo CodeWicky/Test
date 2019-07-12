@@ -80,13 +80,9 @@ typedef void(^DWCustomTransitionHandler)(DWTransition * transition,id <UIViewCon
 
 @interface UINavigationController (DWTransition)
 
+@property (nonatomic ,strong) UIImage * dw_snapBeforePush;
+
 @property (nonatomic ,strong ,readonly) UIView * dw_navigationTransitionView;
-
-@end
-
-@interface UITabBarController (DWTransition)
-
-@property (nonatomic ,strong ,readonly) UIView * dw_tabTransitionView;
 
 @end
 

@@ -42,8 +42,7 @@ static NSString * const kDWTransitionTransparentTempView = @"DWTransitionTranspa
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView * toView = [transitionContext viewForKey:UITransitionContextToViewKey];
     UIImageView * fromView = [[UIImageView alloc] init];
-    fromView.image = [self snapWithViewController:fromVC.navigationController.view.window.rootViewController];
-    UIImageWriteToSavedPhotosAlbum(fromView.image, nil, nil, nil);
+    fromView.image = fromVC.navigationController.dw_snapBeforePush;
     
     UIView *containerView = [transitionContext containerView];
     ///此处移除所有原有子视图，因为Push本身的行为就是Push完成之后context层只有一个toView
@@ -861,10 +860,6 @@ static NSString * const kDWTransitionTransparentTempView = @"DWTransitionTranspa
     }
 }
 
--(UIImage *)snapWithViewController:(UIViewController *)vc {
-    return [self snapWithView:vc.view];
-}
-
 -(UIImage *)snapWithView:(UIView *)view {
     CGFloat scale = [UIScreen mainScreen].scale;
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, scale);
@@ -920,6 +915,51 @@ static NSString * const kDWTransitionTransparentTempView = @"DWTransitionTranspa
 
 @implementation UINavigationController (DWTransition)
 
+
++(void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Method originalMethod = class_getInstanceMethod([self class], @selector(pushViewController:animated:));
+        Method swizzledMethod = class_getInstanceMethod([self class], @selector(dw_transition_pushViewController:animated:));
+        
+        BOOL didAddMethod =
+        class_addMethod([self class],
+                        @selector(pushViewController:animated:),
+                        method_getImplementation(swizzledMethod),
+                        method_getTypeEncoding(swizzledMethod));
+        
+        if (didAddMethod) {
+            class_replaceMethod([self class],
+                                @selector(dw_transition_pushViewController:animated:),
+                                method_getImplementation(originalMethod),
+                                method_getTypeEncoding(originalMethod));
+        } else {
+            method_exchangeImplementations(originalMethod, swizzledMethod);
+        }
+    });
+}
+
+#pragma mark --- override ---
+
+-(void)dw_transition_pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if (self.viewControllers.count > 1) {
+        self.dw_snapBeforePush = [self snapWithView:self.dw_navigationTransitionView];
+    }
+    [self dw_transition_pushViewController:viewController animated:animated];
+}
+
+-(UIImage *)snapWithView:(UIView *)view {
+    CGFloat scale = [UIScreen mainScreen].scale;
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    [view.layer renderInContext:context];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+#pragma mark --- setter/getter ---
 -(UIView *)dw_navigationTransitionView {
     UIView * view = objc_getAssociatedObject(self, _cmd);
     if (!view) {
@@ -929,17 +969,12 @@ static NSString * const kDWTransitionTransparentTempView = @"DWTransitionTranspa
     return view;
 }
 
-@end
+-(UIImage *)dw_snapBeforePush {
+    return objc_getAssociatedObject(self, _cmd);
+}
 
-@implementation UITabBarController (DWTransition)
-
--(UIView *)dw_tabTransitionView {
-    UIView * view = objc_getAssociatedObject(self, _cmd);
-    if (!view) {
-        view = [self valueForKey:@"_accessoryView"];
-        objc_setAssociatedObject(self, _cmd, view, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    return view;
+-(void)setDw_snapBeforePush:(UIImage *)dw_snapBeforePush {
+    objc_setAssociatedObject(self, @selector(dw_snapBeforePush), dw_snapBeforePush, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

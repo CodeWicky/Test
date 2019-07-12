@@ -17,9 +17,9 @@
 +(void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-//        DWQuickSwizzleMethod(viewWillAppear:, dw_viewWillAppear:);
-//        DWQuickSwizzleMethod(viewWillLayoutSubviews, dw_viewWillLayoutSubviews);
-//        DWQuickSwizzleMethod(viewDidAppear:, dw_viewDidAppear:);
+        DWQuickSwizzleMethod(viewWillAppear:, dw_viewWillAppear:);
+        DWQuickSwizzleMethod(viewWillLayoutSubviews, dw_viewWillLayoutSubviews);
+        DWQuickSwizzleMethod(viewDidAppear:, dw_viewDidAppear:);
     });
 }
 
@@ -198,16 +198,10 @@
 
 #pragma mark --- setter/getter ---
 -(void)setDw_userNavigationTransition:(BOOL)dw_userNavigationTransition {
-    if ([self isKindOfClass:[UINavigationController class]] || [self isKindOfClass:[UITabBarController class]]) {
-        return ;
-    }
     DWQuickSetAssociatedValue(@selector(dw_userNavigationTransition), @(dw_userNavigationTransition));
 }
 
 -(BOOL)dw_userNavigationTransition {
-    if ([self isKindOfClass:[UINavigationController class]] || [self isKindOfClass:[UITabBarController class]]) {
-        return NO;
-    }
     NSNumber * use = DWQuickGetAssociatedValue();
     if (!use) {
         use = @(YES);

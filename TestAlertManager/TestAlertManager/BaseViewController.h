@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseViewController : UIViewController<DWTransitionProtocol>
 
+-(UIImage*)createImageWithColor:(UIColor*)color;
+
 @end
 
 NS_ASSUME_NONNULL_END

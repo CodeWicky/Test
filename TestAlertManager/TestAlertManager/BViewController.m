@@ -29,38 +29,14 @@
     [self.view addSubview:yellow];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    UIViewController * fromVC = [self.transitionCoordinator viewControllerForKey:(UITransitionContextFromViewControllerKey)];
-    if ([fromVC isKindOfClass:NSClassFromString(@"DDAlertController")]) {
-        animated = NO;
-    }
-    
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:[UIColor colorWithWhite:1 alpha:0.7]] forBarMetrics:(UIBarMetricsDefault)];
-}
-
--(UIImage*)createImageWithColor:(UIColor*)color
-{
-    CGRect rect=CGRectMake(0.0f,0.0f,1.0f,1.0f);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context=UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context,[color CGColor]);
-    CGContextFillRect(context,rect);
-    UIImage *theImage=UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return theImage;
-}
-
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    DDAlertController * alert = [DDAlertController new];
-    alert.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
-    UIView * content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
-    content.backgroundColor = [UIColor whiteColor];
-    alert.contentView = content;
-    [alert showInViewController:self];
-    return;
+//    DDAlertController * alert = [DDAlertController new];
+//    alert.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
+//    UIView * content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+//    content.backgroundColor = [UIColor whiteColor];
+//    alert.contentView = content;
+//    [alert showInViewController:self];
+//    return;
     CViewController * new =[CViewController new];
     [self.navigationController pushViewController:new animated:YES];
 }

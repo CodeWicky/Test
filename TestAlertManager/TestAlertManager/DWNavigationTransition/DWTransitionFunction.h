@@ -6,7 +6,6 @@
 //  Copyright © 2019 Wicky. All rights reserved.
 //
 
-//#import <Foundation/Foundation.h>
 #import <Foundation/Foundation.h>
 
 #define DWQuickSwizzleMethod(A,B) DWSwizzleMethod([self class],@selector(A),[self class],@selector(B))

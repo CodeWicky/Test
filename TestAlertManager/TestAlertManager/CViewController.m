@@ -19,16 +19,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-//    UIViewController * fromVC = [self.transitionCoordinator viewControllerForKey:(UITransitionContextFromViewControllerKey)];
-//    if ([fromVC isKindOfClass:NSClassFromString(@"DDAlertController")]) {
-//        animated = NO;
-//    }
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:[UIColor colorWithRed:0 green:0 blue:1 alpha:0.3]] forBarMetrics:(UIBarMetricsDefault)];
-}
-
 -(UIImage*)createImageWithColor:(UIColor*)color
 {
     CGRect rect=CGRectMake(0.0f,0.0f,1.0f,1.0f);

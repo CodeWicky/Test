@@ -130,7 +130,7 @@
 #pragma mark --- life cycle ---
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.sourceHiddenNavigation = self.navigationController.navigationBarHidden;
+    self.sourceHiddenNavigation = self.navigationController.navigationBarHidden;
     [self setupUI];
 }
 
@@ -139,10 +139,6 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:[UIColor colorWithRed:0 green:1 blue:0 alpha:0.]] forBarMetrics:(UIBarMetricsDefault)];
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:(UIBarMetricsDefault)];
-//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-////    [self.navigationItem setHidesBackButton:YES animated:animated];
-//    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 -(UIImage*)createImageWithColor:(UIColor*)color
@@ -160,11 +156,6 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self showAnimationWithCompletion:nil];
-}
-
--(void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-//    [self.currentVC.navigationController setNavigationBarHidden:self.sourceHiddenNavigation animated:animated];
 }
 
 #pragma mark --- override ---
