@@ -13,6 +13,7 @@
 @end
 
 @implementation BaseViewController
+@synthesize dw_pushAnimationType,dw_popAnimationType,dw_animationFlag;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

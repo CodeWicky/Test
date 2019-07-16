@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37B159B158037B4F65B20A9E /* libPods-NewTestAlertManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FC87B714B8118C805D2359D /* libPods-NewTestAlertManager.a */; };
 		9B3C13C422D89AAD00AED045 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13C322D89AAD00AED045 /* AppDelegate.m */; };
 		9B3C13C722D89AAD00AED045 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13C622D89AAD00AED045 /* ViewController.m */; };
 		9B3C13CA22D89AAD00AED045 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B3C13C822D89AAD00AED045 /* Main.storyboard */; };
@@ -17,17 +18,12 @@
 		9B3C13DD22D89AEF00AED045 /* AViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13DC22D89AEF00AED045 /* AViewController.m */; };
 		9B3C13E022D89AF700AED045 /* BViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13DF22D89AF700AED045 /* BViewController.m */; };
 		9B3C13E322D89AFC00AED045 /* CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13E222D89AFC00AED045 /* CViewController.m */; };
-		9B3C13F122D89BFD00AED045 /* UIScrollView+DWNavigationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13E522D89BFD00AED045 /* UIScrollView+DWNavigationTransition.m */; };
-		9B3C13F222D89BFD00AED045 /* UIViewController+DWNavigationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13E722D89BFD00AED045 /* UIViewController+DWNavigationTransition.m */; };
-		9B3C13F322D89BFD00AED045 /* DWTransitionFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13E922D89BFD00AED045 /* DWTransitionFunction.m */; };
-		9B3C13F422D89BFD00AED045 /* UIView+DWNavigationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13EC22D89BFD00AED045 /* UIView+DWNavigationTransition.m */; };
-		9B3C13F522D89BFD00AED045 /* UINavigationController+DWNavigationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13EE22D89BFD00AED045 /* UINavigationController+DWNavigationTransition.m */; };
-		9B3C13F622D89BFD00AED045 /* UINavigationBar+DWNavigationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13F022D89BFD00AED045 /* UINavigationBar+DWNavigationTransition.m */; };
 		9B3C13F922D89D0900AED045 /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13F822D89D0900AED045 /* NavViewController.m */; };
 		9B3C13FE22D89F8200AED045 /* DWTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13FD22D89F8200AED045 /* DWTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8FC87B714B8118C805D2359D /* libPods-NewTestAlertManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NewTestAlertManager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B3C13BF22D89AAD00AED045 /* NewTestAlertManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewTestAlertManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B3C13C222D89AAD00AED045 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9B3C13C322D89AAD00AED045 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -46,22 +42,12 @@
 		9B3C13DF22D89AF700AED045 /* BViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BViewController.m; sourceTree = "<group>"; };
 		9B3C13E122D89AFC00AED045 /* CViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CViewController.h; sourceTree = "<group>"; };
 		9B3C13E222D89AFC00AED045 /* CViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CViewController.m; sourceTree = "<group>"; };
-		9B3C13E522D89BFD00AED045 /* UIScrollView+DWNavigationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+DWNavigationTransition.m"; sourceTree = "<group>"; };
-		9B3C13E622D89BFD00AED045 /* UINavigationController+DWNavigationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+DWNavigationTransition.h"; sourceTree = "<group>"; };
-		9B3C13E722D89BFD00AED045 /* UIViewController+DWNavigationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DWNavigationTransition.m"; sourceTree = "<group>"; };
-		9B3C13E822D89BFD00AED045 /* UIView+DWNavigationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DWNavigationTransition.h"; sourceTree = "<group>"; };
-		9B3C13E922D89BFD00AED045 /* DWTransitionFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTransitionFunction.m; sourceTree = "<group>"; };
-		9B3C13EA22D89BFD00AED045 /* UINavigationBar+DWNavigationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+DWNavigationTransition.h"; sourceTree = "<group>"; };
-		9B3C13EB22D89BFD00AED045 /* UIScrollView+DWNavigationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+DWNavigationTransition.h"; sourceTree = "<group>"; };
-		9B3C13EC22D89BFD00AED045 /* UIView+DWNavigationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DWNavigationTransition.m"; sourceTree = "<group>"; };
-		9B3C13ED22D89BFD00AED045 /* UIViewController+DWNavigationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DWNavigationTransition.h"; sourceTree = "<group>"; };
-		9B3C13EE22D89BFD00AED045 /* UINavigationController+DWNavigationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+DWNavigationTransition.m"; sourceTree = "<group>"; };
-		9B3C13EF22D89BFD00AED045 /* DWTransitionFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTransitionFunction.h; sourceTree = "<group>"; };
-		9B3C13F022D89BFD00AED045 /* UINavigationBar+DWNavigationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+DWNavigationTransition.m"; sourceTree = "<group>"; };
 		9B3C13F722D89D0900AED045 /* NavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavViewController.h; sourceTree = "<group>"; };
 		9B3C13F822D89D0900AED045 /* NavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
 		9B3C13FC22D89F8200AED045 /* DWTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTransition.h; sourceTree = "<group>"; };
 		9B3C13FD22D89F8200AED045 /* DWTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTransition.m; sourceTree = "<group>"; };
+		BA17DDF755C4F5E240395D57 /* Pods-NewTestAlertManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewTestAlertManager.debug.xcconfig"; path = "Target Support Files/Pods-NewTestAlertManager/Pods-NewTestAlertManager.debug.xcconfig"; sourceTree = "<group>"; };
+		CB953D928ED836FB52B4EC92 /* Pods-NewTestAlertManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewTestAlertManager.release.xcconfig"; path = "Target Support Files/Pods-NewTestAlertManager/Pods-NewTestAlertManager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,17 +55,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37B159B158037B4F65B20A9E /* libPods-NewTestAlertManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CD4345FABDE4A901AF4D2DE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BA17DDF755C4F5E240395D57 /* Pods-NewTestAlertManager.debug.xcconfig */,
+				CB953D928ED836FB52B4EC92 /* Pods-NewTestAlertManager.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9B3C13B622D89AAD00AED045 = {
 			isa = PBXGroup;
 			children = (
 				9B3C13C122D89AAD00AED045 /* NewTestAlertManager */,
 				9B3C13C022D89AAD00AED045 /* Products */,
+				4CD4345FABDE4A901AF4D2DE /* Pods */,
+				D2272217A7410FFDA76A6F95 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,7 +94,6 @@
 			children = (
 				9B3C13FB22D89F8200AED045 /* DWTransition */,
 				9B3C13FA22D89D1100AED045 /* Nav */,
-				9B3C13E422D89BFD00AED045 /* DWNavigationTransition */,
 				9B3C13C222D89AAD00AED045 /* AppDelegate.h */,
 				9B3C13C322D89AAD00AED045 /* AppDelegate.m */,
 				9B3C13C522D89AAD00AED045 /* ViewController.h */,
@@ -118,25 +115,6 @@
 			path = NewTestAlertManager;
 			sourceTree = "<group>";
 		};
-		9B3C13E422D89BFD00AED045 /* DWNavigationTransition */ = {
-			isa = PBXGroup;
-			children = (
-				9B3C13E522D89BFD00AED045 /* UIScrollView+DWNavigationTransition.m */,
-				9B3C13E622D89BFD00AED045 /* UINavigationController+DWNavigationTransition.h */,
-				9B3C13E722D89BFD00AED045 /* UIViewController+DWNavigationTransition.m */,
-				9B3C13E822D89BFD00AED045 /* UIView+DWNavigationTransition.h */,
-				9B3C13E922D89BFD00AED045 /* DWTransitionFunction.m */,
-				9B3C13EA22D89BFD00AED045 /* UINavigationBar+DWNavigationTransition.h */,
-				9B3C13EB22D89BFD00AED045 /* UIScrollView+DWNavigationTransition.h */,
-				9B3C13EC22D89BFD00AED045 /* UIView+DWNavigationTransition.m */,
-				9B3C13ED22D89BFD00AED045 /* UIViewController+DWNavigationTransition.h */,
-				9B3C13EE22D89BFD00AED045 /* UINavigationController+DWNavigationTransition.m */,
-				9B3C13EF22D89BFD00AED045 /* DWTransitionFunction.h */,
-				9B3C13F022D89BFD00AED045 /* UINavigationBar+DWNavigationTransition.m */,
-			);
-			path = DWNavigationTransition;
-			sourceTree = "<group>";
-		};
 		9B3C13FA22D89D1100AED045 /* Nav */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +133,14 @@
 			path = DWTransition;
 			sourceTree = "<group>";
 		};
+		D2272217A7410FFDA76A6F95 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8FC87B714B8118C805D2359D /* libPods-NewTestAlertManager.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,6 +148,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B3C13D522D89AAF00AED045 /* Build configuration list for PBXNativeTarget "NewTestAlertManager" */;
 			buildPhases = (
+				5B79C38306D274F5ECBBD052 /* [CP] Check Pods Manifest.lock */,
 				9B3C13BB22D89AAD00AED045 /* Sources */,
 				9B3C13BC22D89AAD00AED045 /* Frameworks */,
 				9B3C13BD22D89AAD00AED045 /* Resources */,
@@ -220,26 +207,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5B79C38306D274F5ECBBD052 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NewTestAlertManager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9B3C13BB22D89AAD00AED045 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B3C13F222D89BFD00AED045 /* UIViewController+DWNavigationTransition.m in Sources */,
-				9B3C13F322D89BFD00AED045 /* DWTransitionFunction.m in Sources */,
 				9B3C13FE22D89F8200AED045 /* DWTransition.m in Sources */,
 				9B3C13C722D89AAD00AED045 /* ViewController.m in Sources */,
-				9B3C13F122D89BFD00AED045 /* UIScrollView+DWNavigationTransition.m in Sources */,
 				9B3C13E022D89AF700AED045 /* BViewController.m in Sources */,
 				9B3C13DD22D89AEF00AED045 /* AViewController.m in Sources */,
 				9B3C13F922D89D0900AED045 /* NavViewController.m in Sources */,
 				9B3C13DA22D89ADF00AED045 /* BaseViewController.m in Sources */,
-				9B3C13F622D89BFD00AED045 /* UINavigationBar+DWNavigationTransition.m in Sources */,
 				9B3C13D222D89AAF00AED045 /* main.m in Sources */,
 				9B3C13C422D89AAD00AED045 /* AppDelegate.m in Sources */,
-				9B3C13F522D89BFD00AED045 /* UINavigationController+DWNavigationTransition.m in Sources */,
 				9B3C13E322D89AFC00AED045 /* CViewController.m in Sources */,
-				9B3C13F422D89BFD00AED045 /* UIView+DWNavigationTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +385,7 @@
 		};
 		9B3C13D622D89AAF00AED045 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA17DDF755C4F5E240395D57 /* Pods-NewTestAlertManager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -396,6 +403,7 @@
 		};
 		9B3C13D722D89AAF00AED045 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB953D928ED836FB52B4EC92 /* Pods-NewTestAlertManager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

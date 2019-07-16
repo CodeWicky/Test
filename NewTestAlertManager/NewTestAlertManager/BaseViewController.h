@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DWTransition/DWTransition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseViewController : UIViewController
+@interface BaseViewController : UIViewController<DWTransitionProtocol>
 
 -(UIImage*)createImageWithColor:(UIColor*)color;
 

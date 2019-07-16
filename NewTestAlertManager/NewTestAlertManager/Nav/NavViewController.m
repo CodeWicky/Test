@@ -25,9 +25,9 @@
 
 -(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
     if (operation == UINavigationControllerOperationPush) {
-        if ([toVC conformsToProtocol:@protocol(DWTransitionProtocol)] && [toVC respondsToSelector:@selector(pushAnimationType)]) {
-            DWTransitionType animationType = ((id <DWTransitionProtocol>)toVC).pushAnimationType & DWTransitionAnimationTypeMask;
-            DWTransitionType transitionType = ((id <DWTransitionProtocol>)toVC).pushAnimationType & DWTransitionTypeMask;
+        if ([toVC conformsToProtocol:@protocol(DWTransitionProtocol)] && [toVC respondsToSelector:@selector(dw_pushAnimationType)]) {
+            DWTransitionType animationType = ((id <DWTransitionProtocol>)toVC).dw_pushAnimationType & DWTransitionAnimationTypeMask;
+            DWTransitionType transitionType = ((id <DWTransitionProtocol>)toVC).dw_pushAnimationType & DWTransitionTypeMask;
             if (transitionType == DWTransitionDefaultType) {
                 transitionType = DWTransitionPushType;
             } else if (transitionType == DWTransitionTransparentPopType) {
@@ -57,7 +57,7 @@
         
         if (fromIndex == (toIndex + 1)) {
             self.viewControllersBeforePop = nil;
-            if ([fromVC conformsToProtocol:@protocol(DWTransitionProtocol)] && [fromVC respondsToSelector:@selector(popAnimationType)]) {
+            if ([fromVC conformsToProtocol:@protocol(DWTransitionProtocol)] && [fromVC respondsToSelector:@selector(dw_popAnimationType)]) {
                 return [self popTransitionForVC:(UIViewController <DWTransitionProtocol>*)fromVC];
             } else {
                 return nil;
@@ -67,9 +67,9 @@
             NSInteger start = toIndex + 1;
             while (start <= fromIndex) {
                 UIViewController * tmp = self.viewControllersBeforePop[start];
-                if ([tmp conformsToProtocol:@protocol(DWTransitionProtocol)] && [tmp respondsToSelector:@selector(popAnimationType)] && [tmp respondsToSelector:@selector(animationFlag)]) {
+                if ([tmp conformsToProtocol:@protocol(DWTransitionProtocol)] && [tmp respondsToSelector:@selector(dw_popAnimationType)] && [tmp respondsToSelector:@selector(dw_animationFlag)]) {
                     ///找到了优先使用的动画模式
-                    if (((id <DWTransitionProtocol>)tmp).animationFlag == YES) {
+                    if (((id <DWTransitionProtocol>)tmp).dw_animationFlag == YES) {
                         self.viewControllersBeforePop = nil;
                         return [self popTransitionForVC:(UIViewController<DWTransitionProtocol> *)tmp];
                     }
@@ -79,7 +79,7 @@
             ///到这里没return出去，说明没有，则看toVC的下一个vc。
             UIViewController * nextVC = self.viewControllersBeforePop[toIndex + 1];
             self.viewControllersBeforePop = nil;
-            if ([nextVC conformsToProtocol:@protocol(DWTransitionProtocol)] && [nextVC respondsToSelector:@selector(popAnimationType)]) {
+            if ([nextVC conformsToProtocol:@protocol(DWTransitionProtocol)] && [nextVC respondsToSelector:@selector(dw_popAnimationType)]) {
                 return [self popTransitionForVC:(UIViewController <DWTransitionProtocol>*)nextVC];
             } else {
                 return nil;
@@ -91,13 +91,13 @@
 
 -(DWTransition *)popTransitionForVC:(UIViewController <DWTransitionProtocol>*)vc {
     ///如果未设置PopType，则取PushType作为默认值
-    DWTransitionType animationType = vc.popAnimationType & DWTransitionAnimationTypeMask;
+    DWTransitionType animationType = vc.dw_popAnimationType & DWTransitionAnimationTypeMask;
     if (animationType == DWTransitionDefaultType) {
-        animationType = vc.pushAnimationType & DWTransitionAnimationTypeMask;
+        animationType = vc.dw_pushAnimationType & DWTransitionAnimationTypeMask;
     }
-    DWTransitionType transitionType = vc.popAnimationType & DWTransitionTypeMask;
+    DWTransitionType transitionType = vc.dw_popAnimationType & DWTransitionTypeMask;
     if (transitionType == DWTransitionDefaultType) {
-        transitionType = vc.pushAnimationType & DWTransitionTypeMask;
+        transitionType = vc.dw_pushAnimationType & DWTransitionTypeMask;
     }
     if (transitionType == DWTransitionDefaultType) {
         transitionType = DWTransitionPopType;

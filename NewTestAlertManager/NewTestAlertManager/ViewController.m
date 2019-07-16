@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "AViewController.h"
+#import "DWNavigationTransition/UIViewController+DWNavigationTransition.h"
 
 @interface ViewController ()
 
@@ -22,6 +23,9 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     AViewController * vc = [AViewController new];
+    vc.dw_pushAnimationType = DWTransitionTransparentPushType;
+    vc.dw_popAnimationType = DWTransitionTransparentPopType;
+    vc.dw_userNavigationTransition = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
