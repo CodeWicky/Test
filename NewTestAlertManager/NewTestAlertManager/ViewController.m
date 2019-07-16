@@ -24,7 +24,7 @@
     AViewController * vc = [AViewController new];
     vc.dw_pushAnimationType = DWTransitionTransparentPushType;
     vc.dw_popAnimationType = DWTransitionTransparentPopType;
-    vc.dw_userNavigationTransition = NO;
+    vc.dw_useNavigationTransition = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

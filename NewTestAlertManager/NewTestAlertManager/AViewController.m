@@ -23,7 +23,7 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     BViewController * vc = [BViewController new];
-    vc.dw_userNavigationTransition = NO;
+    vc.dw_useNavigationTransition = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
