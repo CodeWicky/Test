@@ -20,6 +20,7 @@
 		9B3C13E322D89AFC00AED045 /* CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13E222D89AFC00AED045 /* CViewController.m */; };
 		9B3C13F922D89D0900AED045 /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13F822D89D0900AED045 /* NavViewController.m */; };
 		9B3C13FE22D89F8200AED045 /* DWTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C13FD22D89F8200AED045 /* DWTransition.m */; };
+		9B3C140222DDD7EC00AED045 /* DDAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3C140122DDD7EC00AED045 /* DDAlertController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,8 @@
 		9B3C13F822D89D0900AED045 /* NavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
 		9B3C13FC22D89F8200AED045 /* DWTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTransition.h; sourceTree = "<group>"; };
 		9B3C13FD22D89F8200AED045 /* DWTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTransition.m; sourceTree = "<group>"; };
+		9B3C140022DDD7EC00AED045 /* DDAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAlertController.h; sourceTree = "<group>"; };
+		9B3C140122DDD7EC00AED045 /* DDAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAlertController.m; sourceTree = "<group>"; };
 		BA17DDF755C4F5E240395D57 /* Pods-NewTestAlertManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewTestAlertManager.debug.xcconfig"; path = "Target Support Files/Pods-NewTestAlertManager/Pods-NewTestAlertManager.debug.xcconfig"; sourceTree = "<group>"; };
 		CB953D928ED836FB52B4EC92 /* Pods-NewTestAlertManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewTestAlertManager.release.xcconfig"; path = "Target Support Files/Pods-NewTestAlertManager/Pods-NewTestAlertManager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +95,7 @@
 		9B3C13C122D89AAD00AED045 /* NewTestAlertManager */ = {
 			isa = PBXGroup;
 			children = (
+				9B3C13FF22DDD7EC00AED045 /* DDAlertController */,
 				9B3C13FB22D89F8200AED045 /* DWTransition */,
 				9B3C13FA22D89D1100AED045 /* Nav */,
 				9B3C13C222D89AAD00AED045 /* AppDelegate.h */,
@@ -131,6 +135,15 @@
 				9B3C13FD22D89F8200AED045 /* DWTransition.m */,
 			);
 			path = DWTransition;
+			sourceTree = "<group>";
+		};
+		9B3C13FF22DDD7EC00AED045 /* DDAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				9B3C140022DDD7EC00AED045 /* DDAlertController.h */,
+				9B3C140122DDD7EC00AED045 /* DDAlertController.m */,
+			);
+			path = DDAlertController;
 			sourceTree = "<group>";
 		};
 		D2272217A7410FFDA76A6F95 /* Frameworks */ = {
@@ -239,6 +252,7 @@
 			files = (
 				9B3C13FE22D89F8200AED045 /* DWTransition.m in Sources */,
 				9B3C13C722D89AAD00AED045 /* ViewController.m in Sources */,
+				9B3C140222DDD7EC00AED045 /* DDAlertController.m in Sources */,
 				9B3C13E022D89AF700AED045 /* BViewController.m in Sources */,
 				9B3C13DD22D89AEF00AED045 /* AViewController.m in Sources */,
 				9B3C13F922D89D0900AED045 /* NavViewController.m in Sources */,

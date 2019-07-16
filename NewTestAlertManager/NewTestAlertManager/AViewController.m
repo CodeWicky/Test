@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor redColor];
-    self.view.backgroundColor = [UIColor colorWithWhite:1 alpha:0.9];
+    self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
