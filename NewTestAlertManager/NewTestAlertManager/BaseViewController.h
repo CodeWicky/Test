@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DWTransition/DWTransition.h"
+#import <UIViewController+DWNavigationTransition.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
