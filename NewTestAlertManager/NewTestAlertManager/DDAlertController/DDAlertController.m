@@ -8,7 +8,7 @@
 
 #import "DDAlertController.h"
 
-#import "CViewController.h"
+#import "BViewController.h"
 
 @interface DDAlertController ()
 
@@ -19,6 +19,8 @@
 @property (nonatomic ,assign) BOOL sourceHiddenNavigation;
 
 @property (nonatomic ,strong) UIViewController * currentVC;
+
+@property (nonatomic ,assign) BOOL finishFirstAppear;
 
 @end
 
@@ -58,7 +60,7 @@
         UINavigationBar * bar = self.currentVC.navigationController.navigationBar;
         CGRect frame = bar.frame;
         ///额外加0.5，因为有分割线
-        frame.size.height = CGRectGetMaxY(frame) + 0.5;
+        frame.size.height = CGRectGetMaxY(frame);
         frame.origin.y = 0;
         UIImage * navImage = [self snapWithView:self.currentVC.navigationController.view];
         navImage = [self cropImage:navImage inRect:frame];
@@ -67,6 +69,18 @@
         [self.view addSubview:self.snapNavigationBar];
     }
     [self.view addSubview:self.bgContainer];
+}
+
+-(void)configContentIfNeeded {
+    if (!CGRectEqualToRect(self.bgContainer.frame, self.view.bounds)) {
+        self.bgContainer.frame = self.view.bounds;
+    }
+    
+    if (self.contentView) {
+        if (!CGPointEqualToPoint(self.contentView.center, self.view.center)) {
+            self.contentView.center = self.view.center;
+        }
+    }
 }
 
 -(UIImage *)snapWithView:(UIView *)view {
@@ -106,6 +120,8 @@
 }
 
 -(void)showAnimationWithCompletion:(dispatch_block_t)completion {
+    [self configContentIfNeeded];
+    self.bgContainer.alpha = 0;
     [UIView animateWithDuration:0.25 animations:^{
         self.bgContainer.alpha = 1;
     } completion:^(BOOL finished) {
@@ -139,6 +155,14 @@
     [self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:[UIColor colorWithRed:0 green:1 blue:0 alpha:0.]] forBarMetrics:(UIBarMetricsDefault)];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (!self.finishFirstAppear) {
+        self.finishFirstAppear = YES;
+        [self showAnimationWithCompletion:nil];
+    }
+}
+
 -(UIImage*)createImageWithColor:(UIColor*)color
 {
     CGRect rect=CGRectMake(0.0f,0.0f,1.0f,1.0f);
@@ -151,31 +175,15 @@
     return theImage;
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self showAnimationWithCompletion:nil];
-}
+
 
 #pragma mark --- override ---
--(void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    if (!CGRectEqualToRect(self.bgContainer.frame, self.view.bounds)) {
-        self.bgContainer.frame = self.view.bounds;
-    }
-    
-    if (self.contentView) {
-        [self.view addSubview:self.contentView];
-        if (!CGPointEqualToPoint(self.contentView.center, self.view.center)) {
-            self.contentView.center = self.view.center;
-        }
-    }
-}
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (self.cancelableOnClickBackground && [self.navigationController.topViewController isEqual:self]) {
         CGPoint pointInContent = [[touches anyObject] locationInView:self.contentView];
         if (CGRectContainsPoint(self.contentView.bounds, pointInContent)) {
-            CViewController * new = [CViewController new];
+            BViewController * new = [BViewController new];
             [self.navigationController pushViewController:new animated:YES];
             return;
         }
@@ -198,6 +206,7 @@
 -(UIView *)bgContainer {
     if (!_bgContainer) {
         _bgContainer = [[UIView alloc] init];
+        _bgContainer.alpha = 0;
         _bgContainer.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
     }
     return _bgContainer;
@@ -225,11 +234,11 @@
     return self.bgContainer.backgroundColor;
 }
 
--(DWTransitionType)pushAnimationType {
+-(DWTransitionType)dw_pushAnimationType {
     return DWTransitionTransparentPushType | DWTransitionAnimationNoneType;
 }
 
--(DWTransitionType)popAnimationType {
+-(DWTransitionType)dw_popAnimationType {
     return DWTransitionTransparentPopType | DWTransitionAnimationNoneType;
 }
 

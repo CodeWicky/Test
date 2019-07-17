@@ -18,13 +18,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor cyanColor];
+    UIView * red = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    red.backgroundColor = [UIColor redColor];
+    [self.view addSubview:red];
+    red.center = self.view.center;
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     AViewController * vc = [AViewController new];
     vc.dw_pushAnimationType = DWTransitionTransparentPushType;
     vc.dw_popAnimationType = DWTransitionTransparentPopType;
-    vc.dw_useNavigationTransition = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
