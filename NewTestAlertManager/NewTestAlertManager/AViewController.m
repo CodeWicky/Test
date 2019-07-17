@@ -30,12 +30,7 @@
     UIView * content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
     content.backgroundColor = [UIColor whiteColor];
     vc.contentView = content;
-    
     [vc showInViewController:self];
-    
-//    BViewController * vc = [BViewController new];
-//    vc.dw_useNavigationTransition = NO;
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

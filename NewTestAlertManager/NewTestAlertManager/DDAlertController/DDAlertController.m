@@ -22,6 +22,8 @@
 
 @property (nonatomic ,assign) BOOL finishFirstAppear;
 
+@property (nonatomic ,assign) BOOL originalPopGestureEnable;
+
 @end
 
 @implementation DDAlertController
@@ -157,10 +159,17 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    self.originalPopGestureEnable = self.navigationController.interactivePopGestureRecognizer.isEnabled;
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     if (!self.finishFirstAppear) {
         self.finishFirstAppear = YES;
         [self showAnimationWithCompletion:nil];
     }
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    self.navigationController.interactivePopGestureRecognizer.enabled = self.originalPopGestureEnable;
 }
 
 -(UIImage*)createImageWithColor:(UIColor*)color
@@ -183,8 +192,6 @@
     if (self.cancelableOnClickBackground && [self.navigationController.topViewController isEqual:self]) {
         CGPoint pointInContent = [[touches anyObject] locationInView:self.contentView];
         if (CGRectContainsPoint(self.contentView.bounds, pointInContent)) {
-            BViewController * new = [BViewController new];
-            [self.navigationController pushViewController:new animated:YES];
             return;
         }
         [self dismiss];
