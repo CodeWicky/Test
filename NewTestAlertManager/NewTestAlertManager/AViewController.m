@@ -31,6 +31,7 @@
     content.backgroundColor = [UIColor whiteColor];
     vc.contentView = content;
     [vc showInViewController:self];
+    
 }
 
 /*
