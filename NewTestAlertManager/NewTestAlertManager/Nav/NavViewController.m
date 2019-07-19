@@ -21,6 +21,7 @@
     [super viewDidLoad];
     self.delegate = self;
     self.modalPresentationStyle = UIModalPresentationCustom;
+    NSLog(@"test");
 }
 
 -(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
