@@ -8,8 +8,9 @@
 
 #import "Nav.h"
 #import "NavigationInteractiveTransition.h"
+#import "PopAnimation.h"
 
-@interface Nav () <UIGestureRecognizerDelegate>
+@interface Nav () <UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, weak) UIPanGestureRecognizer *popRecognizer;
 /**
  *  方案一不需要的变量
@@ -23,16 +24,17 @@
     [super viewDidLoad];
 
     UIGestureRecognizer *gesture = self.interactivePopGestureRecognizer;
-//    gesture.delegate = self;
+    gesture.enabled = NO;
     UIView *gestureView = gesture.view;
 
+    gesture.delegate = self;
     UIPanGestureRecognizer *popRecognizer = [[UIPanGestureRecognizer alloc] init];
     popRecognizer.delegate = self;
     popRecognizer.maximumNumberOfTouches = 1;
     [gestureView addGestureRecognizer:popRecognizer];
 #if USE_方案一
-    _navT = [[NavigationInteractiveTransition alloc] initWithViewController:self];
-    [popRecognizer addTarget:_navT action:@selector(handleControllerPop:)];
+    NavigationInteractiveTransition * a_navT = [[NavigationInteractiveTransition alloc] initWithViewController:self];
+    [popRecognizer addTarget:a_navT action:@selector(handleControllerPop:)];
     
 #elif USE_方案二
     /**
@@ -63,6 +65,31 @@
      *  这里有两个条件不允许手势执行，1、当前控制器为根控制器；2、如果这个push、pop动画正在执行（私有属性）
      */
     return self.viewControllers.count != 1 && ![[self valueForKey:@"_isTransitioning"] boolValue];
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                  animationControllerForOperation:(UINavigationControllerOperation)operation
+                                               fromViewController:(UIViewController *)fromVC
+                                                 toViewController:(UIViewController *)toVC {
+    /**
+     *  方法1中判断如果当前执行的是Pop操作，就返回我们自定义的Pop动画对象。
+     */
+    if (operation == UINavigationControllerOperationPop)
+        return [[PopAnimation alloc] init];
+    
+    return nil;
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                         interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController {
+    
+    /**
+     *  方法2会传给你当前的动画对象animationController，判断如果是我们自定义的Pop动画对象，那么就返回interactivePopTransition来监控动画完成度。
+     */
+    if ([animationController isKindOfClass:[PopAnimation class]])
+        return [NavigationInteractiveTransition new];
+    
+    return nil;
 }
 
 @end

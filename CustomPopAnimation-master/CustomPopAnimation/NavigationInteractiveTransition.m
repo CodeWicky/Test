@@ -72,29 +72,8 @@
     
 }
 
-- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
-                                  animationControllerForOperation:(UINavigationControllerOperation)operation
-                                               fromViewController:(UIViewController *)fromVC
-                                                 toViewController:(UIViewController *)toVC {
-    /**
-     *  方法1中判断如果当前执行的是Pop操作，就返回我们自定义的Pop动画对象。
-     */
-    if (operation == UINavigationControllerOperationPop)
-        return [[PopAnimation alloc] init];
-
-    return nil;
-}
-
-- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
-                         interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController {
-
-    /**
-     *  方法2会传给你当前的动画对象animationController，判断如果是我们自定义的Pop动画对象，那么就返回interactivePopTransition来监控动画完成度。
-     */
-    if ([animationController isKindOfClass:[PopAnimation class]])
-        return self.interactivePopTransition;
-
-    return nil;
+-(void)dealloc {
+    NSLog(@"fuck");
 }
 
 @end
