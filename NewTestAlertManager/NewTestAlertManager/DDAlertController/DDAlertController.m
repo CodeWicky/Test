@@ -7,6 +7,7 @@
 //
 
 #import "DDAlertController.h"
+#import "NavViewController.h"
 
 #import "BViewController.h"
 
@@ -159,8 +160,9 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.originalPopGestureEnable = self.navigationController.interactivePopGestureRecognizer.isEnabled;
-    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    NavViewController * nav = (NavViewController *)self.navigationController;
+    self.originalPopGestureEnable = nav.popInteractionEnabled;
+    nav.popInteractionEnabled = NO;
     if (!self.finishFirstAppear) {
         self.finishFirstAppear = YES;
         [self showAnimationWithCompletion:nil];
@@ -169,7 +171,9 @@
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    self.navigationController.interactivePopGestureRecognizer.enabled = self.originalPopGestureEnable;
+    NavViewController * nav = (NavViewController *)self.navigationController;
+    nav.popInteractionEnabled = nav.popInteractionEnabled;
+    nav.popInteractionEnabled = self.originalPopGestureEnable;
 }
 
 -(UIImage*)createImageWithColor:(UIColor*)color

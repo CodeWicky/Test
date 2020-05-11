@@ -8,10 +8,13 @@
 
 #import "NavViewController.h"
 #import "DWTransition.h"
+#import "DWTransitionPopInteraction.h"
 
 @interface NavViewController ()<UINavigationControllerDelegate> 
 
 @property (nonatomic ,strong) NSMutableArray * viewControllersBeforePop;
+
+@property (nonatomic ,strong) DWTransitionPopInteraction * popInteraction;
 
 @end
 
@@ -21,7 +24,7 @@
     [super viewDidLoad];
     self.delegate = self;
     self.modalPresentationStyle = UIModalPresentationCustom;
-    NSLog(@"test");
+    self.popInteraction = [DWTransitionPopInteraction interactionWithNavigationController:self];
 }
 
 -(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
@@ -90,6 +93,24 @@
     return nil;
 }
 
+-(id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController {
+    ///配合DWTransition使用
+    if ([animationController isKindOfClass:[DWTransition class]]) {
+        ///当本次返回是由侧滑返回触发时才进行定制
+        if (self.popInteraction.popInteractionGestureRecognizer.state == UIGestureRecognizerStateBegan) {
+            DWTransition * trans = (DWTransition *)animationController;
+            DWTransitionType type = trans.transitionType & DWTransitionTypeMask;
+            ///当当前动画过程是消失是才触发
+            if (type == DWTransitionPopType || type == DWTransitionTransparentPopType || type == DWTransitionDismissType) {
+                return self.popInteraction;
+            }
+            return nil;
+        }
+        return nil;
+    }
+    return nil;
+}
+
 -(DWTransition *)popTransitionForVC:(UIViewController <DWTransitionProtocol>*)vc {
     ///如果未设置PopType，则取PushType作为默认值
     DWTransitionType animationType = vc.dw_popAnimationType & DWTransitionAnimationTypeMask;
@@ -126,6 +147,14 @@
 -(NSArray<UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated {
     self.viewControllersBeforePop = [self.viewControllers mutableCopy];
     return [super popToRootViewControllerAnimated:animated];
+}
+
+-(void)setPopInteractionEnabled:(BOOL)popInteractionEnabled {
+    self.popInteraction.popInteractionGestureRecognizer.enabled = popInteractionEnabled;
+}
+
+-(BOOL)popInteractionEnabled {
+    return self.popInteraction.popInteractionGestureRecognizer.enabled;
 }
 
 @end

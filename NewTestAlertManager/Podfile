@@ -1,3 +1,4 @@
 target 'NewTestAlertManager' do
 pod 'DWNavigationTransition', :path => '../../Tools/DWNavigationTransition'
+pod 'DWTransition', :path => '../../Tools/DWTransition'
 end

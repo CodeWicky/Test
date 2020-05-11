@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4253C9D265120D111D5562255E8D2FF8"
-               BuildableName = "libPods-NewTestAlertManager.a"
-               BlueprintName = "Pods-NewTestAlertManager"
+               BlueprintIdentifier = "007C2A295A94A8F47956130066FE9435"
+               BuildableName = "libDWTransition.a"
+               BlueprintName = "DWTransition"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

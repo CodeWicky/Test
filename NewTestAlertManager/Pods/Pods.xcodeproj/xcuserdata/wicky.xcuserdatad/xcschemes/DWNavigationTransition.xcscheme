@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "377D75FB9F6BF693DC26B8180A922743"
+               BlueprintIdentifier = "169E2089ACAC4D91AF639B6A7B8A26BC"
                BuildableName = "libDWNavigationTransition.a"
                BlueprintName = "DWNavigationTransition"
                ReferencedContainer = "container:Pods.xcodeproj">
